@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./css/output.css" rel="stylesheet" />
+    <title>Pizza</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+        body {
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .font-family-open-sans {
+            font-family: "Open Sans", sans-serif;
+        }
+
+        .nav-bg {
+            background: rgba(245, 184, 51, 1);
+        }
+
+        .primary-bg {
+            background: rgba(6, 64, 39, 1);
+        }
+
+        .secondary-bg {
+            background: rgba(253, 241, 222, 1);
+        }
+
+        .text-green {
+            color: rgba(6, 64, 39, 1);
+        }
+
+        .text-yellow {
+            color: rgba(245, 184, 51, 1);
+        }
+
+        .text-lightgreen {
+            color: #19d12b;
+        }
+
+        /* .shadoweffect {
+  box-shadow: 4px 4px 8px 0 rgb(250, 250, 250), 6px 6px 20px 0 rgb(243, 240, 240);
+} */
+        .shadoweffect {
+            box-shadow: 10px 10px rgb(195, 192, 179);
+        }
+
+        :root {
+            --marquee-width: 98.9vw;
+            --marquee-height: 50vh;
+            --marquee-elements-displayed: 5;
+            --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
+            --marquee-animation-duration: calc(var(--marquee-elements) * 4s);
+        }
+
+        .marquee {
+            overflow: hidden;
+        }
+
+        .marquee-content {
+            animation: scrolling var(--marquee-animation-duration) linear infinite;
+            display: flex;
+            /* Ensure the content is displayed as flex to enable flexbox features */
+        }
+
+        @keyframes scrolling {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements)));
+            }
+        }
+
+        .marquee-content li {
+            flex-shrink: 0;
+            width: var(--marquee-element-width);
+        }
+
+        /* Add styles for small devices */
+        @media (max-width: 640px) {
+            :root {
+                --marquee-elements-displayed: 2;
+            }
+        }
+
+        /* Add styles for medium devices */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            :root {
+                --marquee-elements-displayed: 4;
+            }
+        }
+
+        /* Add styles for large devices */
+        @media (min-width: 1025px) {
+            :root {
+                --marquee-elements-displayed: 5;
+            }
+        }
+
+        /* Add hover pause effect */
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+
+
+        /*  */
+        .blink {
+            animation: blinker 1.6s linear infinite;
+            /* color: red; */
+            /* font-size: 1.5em; */
+            /* Larger, responsive font size */
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Custom CSS for circular shape and shadow */
+        .shadow-effect {
+            border-radius: 50%;
+            box-shadow: 0 8px 8px rgb(253, 253, 253), 0 1px 3px rgb(255, 255, 255);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .animate-bounce {
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .animate-blink {
+            animation: blink 2s infinite;
+        }
+
+        /*  */
+        .ingredient:nth-child(1) {
+            animation: zoom-in 4s infinite alternate;
+        }
+
+        .ingredient:nth-child(2) {
+            animation: zoom-in 3s infinite alternate 0.8s;
+            /* Delay the animation by 0.5s */
+        }
+
+        .ingredient:nth-child(3) {
+            animation: zoom-in 5s infinite alternate 1s;
+            /* Delay the animation by 1s */
+        }
+
+        .ingredient:nth-child(4) {
+            animation: zoom-in 4s infinite alternate 1.5s;
+            /* Delay the animation by 1.5s */
+        }
+
+        @keyframes zoom-in {
+            0% {
+                transform: scale(.9);
+            }
+
+            100% {
+                transform: scale(.7);
+            }
+        }
+
+        .ingredient:hover {
+            animation: none;
+            /* Disable the automatic animation when hovered */
+            transform: scale(1.1);
+            /* Apply zoom effect when hovered */
+            transition: transform 0.6s ease;
+        }
+
+        /*  */
+        .bg-pentagon {
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            background-image: linear-gradient(to bottom right, #f4f4e1, #FFFF66);
+
+        }
+
+        /*  */
+        .box:hover {
+            transform: scale(1.08);
+            transition: transform 0.2s ease;
+        }
+
+        /*  */
+        .benefit-box {
+            transition: transform 0.5s;
+            /* Adjust transition duration as needed */
+        }
+
+        .benefit-box:hover {
+            transform: scale(1.1);
+            /* Increase scale factor as needed */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex items-center nav-bg px-4 md:px-8 py-2 md:py-4 justify-between">
+        <span class="text-2xl lg:text-4xl  font-extrabold text-green">LUPINI PIZZA</span>
+        <ul class="md:flex hidden font-semibold  gap-6 lg:gap-9 text-green justify-between">
+            <li>HOME</li>
+            <li>ABOUT</li>
+            <li>OUR SERVICES</li>
+            <li>CONTACT</li>
+        </ul>
+        <a href="mailto:noon@gmail.com" class="bg-white rounded-md font-semibold p-2 text-sm text-green">CONTACT</a>
+    </div>
+    <!-- Ita Meal -->
+    <div class="primary-bg mt-1 h-auto">
+        <div class="flex justify-between">
+            <div class="p-2  lg:p-10">
+                <div class="flex items-start justify-between">
+                    <div>
+
+                        <h2 class="text-yellow text-2xl md:text-3xl  lg:text-5xl fontsemi-bold secondary">ItaMeal</h2>
+                        <p class="blink  text-white font-bold text-3xl md:text-5xl lg:text-6xl md:mt-3">
+                            Mangia Better !!
+                        </p>
+                    </div>
+                    <img class="rounded-full flex lg:hidden h-20 md:h-32" src="./images/chef.jpg" alt="">
+                </div>
+
+                <!-- <p class="blink  text-white font-bold text-3xl md:text-6xl md:mt-3">
+                    Mangia Better !!
+                </p> -->
+
+                <p class="text-sm  md:text-xl lg:text-4xl text-yellow mt-2  lg:mt-6">
+                    Lupini Peas Are the most Powerful Superfood You’ve ever Heard of...
+                </p>
+                <p class="text-white text-sm md:text-lg mt-2 md:mt-8">
+                    Che ne dici se mettiamo per farla suonare meglio.
+                </p>
+                <p class="text-white text-sm md:text-lg">
+                    Our secret is a food that no one knows about..
+                </p>
+
+                <p class="text-yellow mt-2 md:mt-6 text-sm md:text-lg">
+                    <span class="text-white text-sm md:text-lg font-semibold">LUPIN : </span> Better
+                    taste with tons of protein and lsess carbs? Almost impossible to
+                    believe!
+                </p>
+                <p class="text-yellow text-sm md:text-lg mt-1">
+                    Lupini beans are the beyond powerful superfood you have been waiting
+                    for...
+                </p>
+
+                <button href="mailto:noon@gmail.com"
+                    class="font-semibold md:text-2xl text-green p-2 md:p-5 rounded-full mt-4 lg:mt-10 bg-white">
+                    Contact
+                </button>
+            </div>
+            <div class="pt-8 hidden lg:flex">
+                <img class="rounded-full h-auto" src="./images/chef.jpg" alt="" />
+            </div>
+        </div>
+        <div class="flex justify-center items-center  p-3">
+            <marquee class="text-sm md:text-xl  text-yellow"
+                style="width: 100%; @media (min-width: 768px) { width: 60%; }">
+                Lupini Peas Are the most Powerful Superfood You’ve ever Heard of...
+            </marquee>
+
+        </div>
+    </div>
+    <!-- Ita Meal End -->
+
+
+    <!--Introducing pizza  -->
+    <div class="flex flex-col md:flex-row justify-between secondary-bg lg:py-12 h-auto">
+        <div class="p-2">
+            <span class="flex md:hidden font-semibold text-green text-xl md:text-5xl">Introducing pizza that brings
+                superfood
+            </span>
+            <img class="h-52 w-full md:h-full" src="./images/pizza1.jpeg" alt="" />
+        </div>
+        <div class="p-2 lg:pt-8  flex flex-col justify-between">
+            <span class="hidden md:flex font-semibold text-green text-xl md:text-3xl lg:text-5xl">
+                Introducing pizza that brings superfood
+            </span>
+            <p class="text-sm md:text-lg lg:text-xl font-medium  text-green ">
+                Lupiz is the first superfood pizza, the best taste, ingredients and
+                macros made yet !
+            </p>
+
+            <ul class="mx-6 m-2 ">
+                <p class="text-xs md:text-base  text-green">
+                    <span>&#9733;</span> More Flavor, more nutrients
+                </p>
+                <p class="text-xs md:text-base  text-green">
+                    <span>&#9733;</span> Lupinizza: Crispy Crust, Healthy Trust
+                </p>
+
+                <p class="text-xs  md:text-base  text-green">
+                    <span>&#9733;</span> Slice into the Good Life: Lupini Pizza
+                </p>
+                <p class="text-xs  md:text-base  text-green">
+                    <span>&#9733;</span> Slice into the Good Life: Lupini Pizza
+                </p>
+                <p class="text-xs  md:text-base  text-green">
+                    <span>&#9733;</span> Slice into the Good Life: Lupini Pizza
+                </p>
+
+            </ul>
+
+            <div class="flex justify-center items-center p-1 md:px-3">
+                <marquee width="100%" direction="right" class="text-sm md:text-lg  md:font-semibold text-green">
+                    Lupini Peas Are the most Powerful Superfood You’ve ever Heard of...</marquee>
+            </div>
+
+            <div class="flex justify-between md:px-2">
+                <div style="width: 48%;" class=" relative">
+                    <img class="w-full" src="./images/pizza-bg.png" alt="" />
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <p style="width: 80%;" class="text-white text-xs lg:text-2xl lg:font-semibold text-center">Lupin
+                            Pizza: Crispy, Healthy, Unbelievably Good.</p>
+                    </div>
+                </div>
+                <div style="width: 48%;" class=" relative">
+                    <img class="w-full" src="./images/pizza-bg.png" alt="" />
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <p style="width: 80%;" class="text-white text-xs lg:text-2xl lg:font-semibold text-center">Lupin
+                            Pizza: a Creation of a Doctor and the best Pizza</p>
+                    </div>
+                </div>
+            </div>
+            <!-- w-40 md:w-52 lg:w-96  -->
+        </div>
+    </div>
+    <!-- Introducing pizza End -->
+
+
+
+    <!-- details -->
+
+    <div>
+        <div>
+            <img class="w-full" src="./images/We Made Pizza Healthy.png" alt="">
+        </div>
+    </div>
+
+
+    <!-- details End -->
+
+
+
+    <!--  -->
+    <div
+        class="flex flex-col lg:flex-row items-center justify-center md:justify-between secondary-bg  py-2 md:p-2 lg:p-8 md:gap-4  lg:gap-8 lg:px-12 ">
+        <div class="flex flex-row md:flex-row p-2 md:p-0 items-center gap-2 md:gap-4">
+            <img src="./images/image 42.png" alt="" class="lg:w-16 lg:h-16 w-8 h-8  rounded-full shadow-md" />
+            <span class="font-medium md:font-semibold text-sm md:text-lg text-center">Organic</span>
+        </div>
+        <div class="  flex flex-row md:flex-row p-2 md:p-0 items-center gap-2 md:gap-4">
+            <img src="./images/image 44.png" alt="" class="lg:w-16 lg:h-16 w-8 h-8 rounded-full shadow-md" />
+            <span class="font-medium  md:font-semibold text-sm md:text-lg text-center">Italian Ingredients</span>
+        </div>
+        <div class="flex flex-row md:flex-row p-2 md:p-0 items-center gap-2 md:gap-4">
+            <img src="./images/image 44.png" alt="" class="lg:w-16 lg:h-16 w-8 h-8 rounded-full shadow-md" />
+            <span class="font-medium md:font-semibold text-sm md:text-lg text-center">Award Winning Chef's made (also
+                Italian)</span>
+        </div>
+
+    </div>
+
+    <!--  -->
+
+
+
+    <!-- secret -->
+    <hr class="md:h-1 primary-bg" />
+    <div class="flex flex-col md:flex-row justify-between secondary-bg p-2  lg:py-12 h-auto">
+        <div class="">
+            <span class="font-semibold md:hidden text-green text-xl ">Lupin is our secret!</span>
+            <img class="h-full mt-1" src="./images/making-pizza.png" alt="" />
+        </div>
+        <div class="pl-2 pt-2  flex flex-col justify-between lg:p-8 pb-0">
+            <span class="hidden md:flex font-semibold text-green text-xl md:text-3xl lg:text-5xl">Lupin is our
+                secret!</span>
+            <p class="text-green text-xs md:text-base mt-1 md:mt-3 lg:mt-4">
+                No One Knows That Behind the Success of the Roman Empire Lies a Secret
+                Recipe: They Nourished Their Soldiers with Lupin
+            </p>
+            <p class="text-green text-xs md:text-base mt-1 md:mt-3 lg:mt-6">
+                Itameal pizza is a product made by Italians including famous and
+                awarded italian pizza chef, Pasquale Cozzolino, with only organic
+                italian ingredients. 
+            </p>
+            <p class="text-green text-xs md:text-base mt-1 md:mt-3 lg:mt-6">
+                Itameal pizza is a product made by Italians including famous and
+                awarded italian pizza chef, Pasquale Cozzolino, with only organic
+                italian ingredients. 
+            </p>
+            <img class="mt-2 md:mt-5 lg:mt-9" src="./images/3x.jpeg" alt="" />
+        </div>
+    </div>
+    <!--secret End  -->
+    <!-- Chart -->
+    <div class="primary-bg p-2 lg:p-12">
+
+        <p class="text-yellow text-center text-xl md:text-3xl lg:text-5xl flex justify-center font-semibold">
+            LUPIN :
+            the Nutritional Game-Changer
+        </p>
+        <span class="text-white flex text-xs md:text-lg lg:text-xl justify-center text-center">
+            Lupin beans are the most sustainable and higher source of protein found in nature</span>
+
+
+
+        <span class="md:mt-3 mt-1 flex text-sm md:text-2xl font-semibold text-yellow justify-center">Protein &
+            Fiber</span>
+
+        <!-- <div class="items-center md:gap-4 md:mt-4 h-auto w-full flex md:flex-row flex-col justify-between ">
+            <div id="chartContainer" class="h-96 bg-red-500 ">
+                <canvas id="myChart" class=""></canvas>
+            </div>
+            <div class="border hidden bg-blue-500 lg:flex">
+                <img src="./images/pizza2.jpeg" alt="" class="h-96 w-96" />
+            </div>
+        </div> -->
+        <div>
+            <canvas id="myChart" class="w-36 h-36 "></canvas>
+        </div>
+
+
+    </div>
+    <!-- Chart End -->
+    <!-- Table -->
+    <div class="secondary-bg p-2 lg:py-12">
+        <span class="flex justify-center text-xl md:text-3xl lg:text-5xl font-semibold mb-3 lg:mb-8 text-green">Table of
+            Ingredients</span>
+        <div class="flex justify-center mt-2">
+            <table class="table-auto w-3/4 border-collapse border border-black">
+                <thead>
+                    <tr>
+                        <th class="border border-black md:p-4"></th>
+                        <th class="border border-black text-green p-2 md:p-4 md:text-2xl">
+                            LUPINI
+                        </th>
+                        <th class="border border-black md:p-4">
+                            <img src="./images/image 38.png" alt="Icon 3" class="md:w-28 p-1 flex mx-auto" />
+                        </th>
+                        <th class="border border-black md:p-4">
+                            <img src="./images/image 39.png" alt="Icon 4" class="md:w-20 p-2 pt-3 flex mx-auto" />
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="border border-black text-sm md:text-3xl text-green p-2 md:p-8 font-semibold">
+                            Calories
+                        </th>
+                        <th class="border border-black text-xs md:text-xl text-green md:p-4 ">359g</th>
+                        <th class="border border-black text-xs md:text-xl text-green md:p-4">628g</th>
+                        <th class="border border-black text-xs md:text-xl text-green md:p-4">600g</th>
+                    </tr>
+                    <tr>
+                        <th class="border border-black text-sm md:text-3xl text-green p-2 font-semibold md:p-8">
+                            Fat
+                        </th>
+                        <th class="border border-black text-xs md:text-xl text-green md:p-4">4.4g</th>
+                        <th class="border border-black text-xs md:text-xl text-green md:p-4">18.5g</th>
+                        <th class="border border-black text-xs md:text-xl text-green md:p-4">24g</th>
+                    </tr>
+                    <tr>
+                        <th class="border border-black text-sm md:text-3xl text-green p-2 font-semibold md:p-8">
+                            Sodium
+                        </th>
+                        <th class="border border-black text-xs md:text-xl text-green md:p-4">102g</th>
+                        <th class="border border-black text-xs md:text-xl text-green md:p-4">628g</th>
+                        <th class="border border-black text-xs md:md:text-xl text-green md:p-4">540g</th>
+                    </tr>
+                    <tr>
+                        <th class="border border-black text-sm md:text-3xl text-green p-2 font-semibold md:p-8">
+                            Protien
+                        </th>
+                        <th class="border border-black text-xs md:text-xl text-green md:p-4">30g</th>
+                        <th class="border border-black text-xs md:text-xl text-green md:p-4">8g</th>
+                        <th class="border border-black text-xs md:text-xl text-green md:p-4">16g</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p
+            class="flex justify-center text-sm text-center md:text-xl mt-2 lg:mt-4 font-medium lg:font-semibold text-green">
+            The three poducts are considered for 192g respectively
+        </p>
+    </div>
+    <!-- Table  end -->
+
+    <!--Superpowers  -->
+    <!-- <div class="primary-bg p-2 lg:p-8 md:px-12 h-auto">
+        <span class="text-xl md:text-3xl lg:text-4xl text-yellow font-semibold justify-center flex mb-4">Lupini
+            Superpowers</span>
+
+        <div class="flex flex-col gap-4 md:flex-row  items-center justify-between md:mt-9">
+
+            <div class="flex border flex-col items-center secondary-bg shadoweffect rounded-lg p-2 md:p-4">
+                <span class="font-extrabold md:text-4xl text-lightgreen">3x</span>
+                <p class="text-green font-semibold text-sm md:text-lg mb-3  w-28 flex text-center justify-center">
+                    Protein of Eggs</p>
+                <div
+                    class="w-20 h-16 lg:w-48 lg:h-40 flex items-center justify-center border border-green-800 rounded-lg overflow-hidden">
+                    <img class="w-full h-full" src="./images/egg.png" alt="" />
+                </div>
+            </div>
+
+            <div class="flex border flex-col items-center secondary-bg shadoweffect rounded-lg p-2 md:p-4">
+                <span class="font-extrabold md:text-4xl text-lightgreen">3x</span>
+                <p class="text-green font-semibold text-sm md:text-lg mb-3  w-28 flex text-center justify-center">
+                    Fiber of Oats</p>
+                <div
+                    class="w-20 h-16 lg:w-48 lg:h-40 flex items-center justify-center border border-green-800 rounded-lg overflow-hidden">
+                    <img class="w-full h-full" src="./images/oats.png" alt="" />
+                </div>
+            </div>
+
+            <div class="flex border flex-col items-center secondary-bg shadoweffect rounded-lg p-2 md:p-4">
+                <span class="font-extrabold md:text-4xl text-lightgreen">3x</span>
+                <p class="text-green font-semibold text-sm md:text-lg mb-3  w-28 flex text-center justify-center">
+                    Potassium of Bananas
+                </p>
+                <div
+                    class="w-20 h-16 lg:w-48 lg:h-40 flex items-center justify-center border border-green-800 rounded-lg overflow-hidden">
+                    <img class="w-full h-full" src="./images/banana.png" alt="" />
+                </div>
+            </div>
+
+            <div class="flex border flex-col items-center secondary-bg shadoweffect rounded-lg p-2 md:p-4">
+                <span class="font-extrabold md:text-4xl text-lightgreen">2x</span>
+                <p class="text-green font-semibold text-sm md:text-lg mb-3  w-28 flex text-center justify-center">
+                    Iron of Kale</p>
+                <div
+                    class="w-20 h-16 lg:w-48 lg:h-40 mb-3 flex items-center justify-center border border-green-800 rounded-lg overflow-hidden">
+                    <img class="w-full h-full"
+                        src="./images/png-transparent-minestrone-kale-leaf-vegetable-smoothie-kale-food-spinach-cabbage-thumbnail-removebg-preview.png"
+                        alt="" />
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="flex justify-center mt-4 md:mt-8">
+            <marquee width="80%" direction="left" class="text-sm md:text-lg text-yellow">Lupini Peas Are the most
+                Powerful Superfood You’ve ever Heard
+                of...</marquee>
+        </div>
+    </div> -->
+
+    <div class=" primary-bg mx-auto p-2 lg:py-12">
+        <h2 class="text-xl md:text-3xl lg:text-5xl font-semibold text-yellow text-center mb-3 lg:mb-8">Lupini
+            Superpowers</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Box 1 -->
+            <div class="box p-2 lg:p-6 rounded-lg shadow-lg secondary-bg">
+                <span class="font-extrabold md:text-4xl text-lightgreen">3x</span>
+                <img src="./images/egg.png" alt="Protein of Eggs" class="w-20 h-20 lg:w-32 lg:h-32 mx-auto ">
+                <h3 class="text-sm md:text-lg font-semibold text-center mb-2 text-green">Protein of Eggs</h3>
+                <p class="text-xs md:text-base text-center text-green">Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit.
+                    Nulla facilisi. Sed id libero libero. Integer semper velit a nulla fermentum, sed aliquet libero
+                    pretium.</p>
+            </div>
+            <div class="box p-2 lg:p-6 rounded-lg shadow-lg secondary-bg">
+                <span class="font-extrabold md:text-4xl text-lightgreen">3x</span>
+                <img src="./images/egg.png" alt="Fiber of Oats" class="w-20 h-20 lg:w-32 lg:h-32 mx-auto ">
+                <h3 class="text-sm md:text-lg font-semibold text-center mb-2 text-green">Fiber of Oats</h3>
+                <p class="text-xs md:text-base text-center text-green">Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit.
+                    Nulla facilisi. Sed id libero libero. Integer semper velit a nulla fermentum, sed aliquet libero
+                    pretium.</p>
+            </div>
+            <div class="box p-2 lg:p-6 rounded-lg shadow-lg secondary-bg">
+                <span class="font-extrabold md:text-4xl text-lightgreen">3x</span>
+                <img src="./images/egg.png" alt="Potassium of Banana" class="w-20 h-20 lg:w-32 lg:h-32 mx-auto ">
+                <h3 class="text-sm md:text-lg font-semibold text-center mb-2 text-green">Potassium of Banana</h3>
+                <p class="text-xs md:text-base text-center text-green">Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit.
+                    Nulla facilisi. Sed id libero libero. Integer semper velit a nulla fermentum, sed aliquet libero
+                    pretium.</p>
+            </div>
+            <div class="box p-2 lg:p-6 rounded-lg shadow-lg secondary-bg">
+                <span class="font-extrabold md:text-4xl text-lightgreen">3x</span>
+                <img src="./images/kale.png" alt="Iron of Kale" class="w-20 h-20 lg:w-32 lg:h-32 mx-auto ">
+                <h3 class="text-sm md:text-lg font-semibold text-center mb-2 text-green">Iron of Kale</h3>
+                <p class="text-xs md:text-base text-center text-green">Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit.
+                    Nulla facilisi. Sed id libero libero. Integer semper velit a nulla fermentum, sed aliquet libero
+                    pretium.</p>
+            </div>
+
+        </div>
+        <div class="flex justify-center mt-4 md:mt-8">
+            <marquee width="80%" direction="left" class="text-sm md:text-lg text-yellow">Lupini Peas Are the most
+                Powerful Superfood You’ve ever Heard
+                of...</marquee>
+        </div>
+    </div>
+    <!-- Superpowers End -->
+
+
+
+
+    <!--Benefits  -->
+    <!-- <div class="secondary-bg p-2 lg:p-6 lg:py-10">
+        <h2 class="text-xl md:text-3xl lg:text-5xl text-green font-semibold mb-4 text-center">
+            Benefits
+        </h2>
+        <div class="flex flex-col items-center justify-center md:mt-6">
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-6">
+                <div class="flex flex-col items-center px-8 p-4 rounded-full shadow-md bg-white">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center animate-bounce">
+                        <img src="./images/image 44.png" alt="Blood Sugar Control" class="w-16 h-16 rounded-full" />
+                    </div>
+                    <span class="bg-red-300 text-xs md:text-lg font-semibold text-center">Blood
+                        Sugar Control</span>
+                </div>
+                <div class="flex flex-col items-center px-8 p-4 rounded-full shadow-md bg-white">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center animate-bounce">
+                        <img src="./images/image 42.png" alt="Blood Sugar Control" class="w-16 h-16 rounded-full" />
+                    </div>
+                    <span class="text-xs md:text-lg font-semibold text-center">Diabetic Friendly
+                    </span>
+                </div>
+
+                <div class="flex flex-col items-center px-8 p-4 rounded-full shadow-md bg-white">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center animate-bounce">
+                        <img src="./images/image 42.png" alt="Blood Sugar Control" class="w-16 h-16 rounded-full" />
+                    </div>
+                    <span class="text-xs md:text-lg font-semibold text-center">Low sodium </span>
+                </div>
+                <div class="flex flex-col items-center px-8 p-4 rounded-full shadow-md bg-white">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center animate-bounce">
+                        <img src="./images/image 42.png" alt="Blood Sugar Control" class="w-16 h-16 rounded-full" />
+                    </div>
+                    <span class="text-xs md:text-lg font-semibold text-center">Healthy gut </span>
+                </div>
+                <div class="flex flex-col items-center px-8 p-4 rounded-full shadow-md bg-white">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center animate-bounce">
+                        <img src="./images/image 42.png" alt="Blood Sugar Control" class="w-16 h-16 rounded-full" />
+                    </div>
+                    <span class="text-xs md:text-lg font-semibold text-center">Low calories </span>
+                </div>
+                <div class="lg:hidden flex flex-col items-center px-8 p-4 rounded-full shadow-md bg-white">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center animate-bounce">
+                        <img src="./images/image 42.png" alt="Blood Sugar Control" class="w-16 h-16 rounded-full" />
+                    </div>
+                    <span class="text-xs md:text-lg font-semibold text-center">Environmentally Sustainable </span>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 place- gap-6 mb-6">
+                <div class="flex flex-col items-center px-8 p-4 rounded-full shadow-md bg-white">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center animate-bounce">
+                        <img src="./images/image 42.png" alt="Blood Sugar Control" class="w-16 h-16 rounded-full" />
+                    </div>
+                    <span class="w-44 bg-red-300 text-xs md:text-lg font-semibold text-center">Rich in Vitamins and
+                        Minerals</span>
+                </div>
+                <div class="flex flex-col items-center px-8 p-4 rounded-full shadow-md bg-white">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center animate-bounce">
+                        <img src="./images/image 42.png" alt="Blood Sugar Control" class="w-16 h-16 rounded-full" />
+                    </div>
+                    <span class="w-44 bg-red-300 text-xs md:text-lg font-semibold text-center">High Protein Low
+                        carbs</span>
+                </div>
+                <div class="flex flex-col items-center px-8 p-4 rounded-full shadow-md bg-white">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center animate-bounce">
+                        <img src="./images/image 42.png" alt="Blood Sugar Control" class="w-16 h-16 rounded-full" />
+                    </div>
+                    <span class="w-44 bg-red-300 text-xs md:text-lg font-semibold text-center">Contains
+                        Prebiotics</span>
+                </div>
+                <div
+                    class="flex md:hidden lg:flex flex-col items-center justify-center px-8 p-4 rounded-full shadow-md bg-white ">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center animate-bounce">
+                        <img src="./images/image 42.png" alt="Blood Sugar Control" class="w-16 h-16 rounded-full" />
+                    </div>
+                    <span style="width: 70%;"
+                        class=" bg-red-300 text-xs md:text-lg font-semibold text-center">Environmentally
+                        Sustainable</span>
+                </div>
+                <div
+                    class="flex md:hidden lg:flex flex-col items-center justify-center px-8 p-4 rounded-full shadow-md bg-white ">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center animate-bounce">
+                        <img src="./images/image 42.png" alt="Blood Sugar Control" class="w-16 h-16 rounded-full" />
+                    </div>
+                    <span style="width: 70%;"
+                        class=" bg-red-300 text-xs md:text-lg font-semibold text-center">Environmentally
+                        Sustainable</span>
+                </div>
+            </div>
+
+        </div>
+    </div> -->
+
+    <div class="secondary-bg p-2 lg:py-12">
+        <h2 class="text-xl md:text-3xl lg:text-5xl text-green font-semibold mb-6 text-center">Benefits</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-6 pb-4 ">
+            <!-- Box 1 -->
+            <div class="  benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
+
+                <img src="./images/image 42.png" alt="Icon 1" class="h-12 w-12 lg:w-16 lg:h-16 mb-2  animate-bounce">
+                <h3 class="text-sm md:text-lg font-semibold text-center">Blood Sugar Control</h3>
+            </div>
+            <!-- Box 2 -->
+            <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
+                <img src="./images/image 42.png" alt="Icon 2" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <h3 class="text-sm md:text-lg font-semibold text-center">Diabetic Friendly</h3>
+            </div>
+            <!-- Box 3 -->
+            <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
+                <img src="./images/image 42.png" alt="Icon 3" class="h-12 w-12 lg:w-16 lg:h-16 mb-2 animate-bounce">
+                <h3 class="text-sm md:text-lg font-semibold text-center">Low sodium</h3>
+            </div>
+            <!-- Box 4 -->
+            <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
+                <img src="./images/image 42.png" alt="Icon 4" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <h3 class="text-sm md:text-lg font-semibold text-center">Healthy gut</h3>
+            </div>
+            <!-- Box 5 -->
+            <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
+                <img src="./images/image 42.png" alt="Icon 5" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <h3 class="text-sm md:text-lg font-semibold text-center">Low calories</h3>
+            </div>
+            <!-- Box 6 -->
+            <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
+                <img src="./images/image 42.png" alt="Icon 6" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <h3 class="text-sm md:text-lg font-semibold text-center">Environmentally Sustainable</h3>
+            </div>
+            <!-- Box 7 -->
+            <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
+                <img src="./images/image 42.png" alt="Icon 7" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <h3 class="text-sm md:text-lg font-semibold text-center">Rich in Vitamins and Minerals</h3>
+            </div>
+            <!-- Box 8 -->
+            <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
+                <img src="./images/image 42.png" alt="Icon 8" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <h3 class="text-sm md:text-lg font-semibold text-center">High Protein Low carbs</h3>
+            </div>
+            <!-- Box 9 -->
+            <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
+                <img src="./images/image 42.png" alt="Icon 9" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <h3 class="text-sm md:text-lg font-semibold text-center">Contains Prebiotics</h3>
+            </div>
+            <!-- Box 10 -->
+            <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
+                <img src="./images/image 42.png" alt="Icon 10" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <h3 class="text-sm md:text-lg font-semibold text-center">Environmentally Sustainable</h3>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--Benefits-end  -->
+
+
+
+
+    <!-- Secret Ingredients -->
+    <!-- <div class="primary-bg p-2 lg:p-6 lg:py-10">
+        <h2 class="text-xl md:text-3xl lg:text-4xl text-yellow font-semibold justify-center flex mb-4">
+            Secret Ingredients
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-12 md:mt-10">
+            <div class="flex gap-3 flex-col items-center">
+                <img src="./images/image 44.png" alt="Cultured Yeast"
+                    class="w-14 h-14 md:w-24 md:h-24 animate-blink rounded-full mb-2 shadow-effect" />
+                <p class="text-sm  text-center text-white font-semibold">Cultured Yeast</p>
+            </div>
+
+            <div class="flex gap-3 flex-col items-center">
+                <img src="./images/image 44.png" alt="Ripetizione"
+                    class="w-14 h-14 md:w-24 md:h-24  animate-blink rounded-full mb-2 shadow-effect" />
+                <p class="text-sm text-center text-white font-semibold">Lupin Flour</p>
+            </div>
+            <div class="flex gap-3 flex-col items-center">
+                <img src="./images/image 44.png" alt="Ripetizione"
+                    class="w-14 h-14 md:w-24 md:h-24 animate-blink rounded-full mb-2 shadow-effect" />
+                <p class="text-sm text-center text-white font-semibold">Ripetizione</p>
+            </div>
+            <div class="flex gap-3 flex-col items-center">
+                <img src="./images/image 44.png" alt="Olive Oil"
+                    class="w-14 h-14 md:w-24 md:h-24 animate-blink rounded-full mb-2 shadow-effect" />
+                <p class="text-sm text-center text-white font-semibold">Olive Oil</p>
+            </div>
+        </div>
+
+
+        <div class="flex justify-center mt-4 md:mt-8">
+            <marquee width="80%" direction="left" class="text-sm md:text-lg text-yellow"> ItaMeal pizza crust is made
+                only out of premium high-quality organic
+                Italian ingredients.</marquee>
+        </div>
+    </div> -->
+
+
+
+    <div class="primary-bg p-2  lg:py-10">
+        <h2 class="text-xl md:text-3xl lg:text-5xl text-yellow font-semibold justify-center flex mb-4">Secret
+            Ingredients</h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Ingredient 1 -->
+            <div class="ingredient flex flex-col items-center px-4 py-6 rounded-lg secondary-bg bg-pentagon">
+                <img src="./images/image 44.png" alt="Cultured Yeast" class="w-24 h-24 mb-4">
+                <span class="text-sm md:text-lg font-semibold text-green text-center">Cultured Yeast</span>
+            </div>
+            <!-- Ingredient 2 -->
+            <div class="ingredient flex flex-col items-center px-4 py-6 rounded-lg secondary-bg bg-pentagon">
+                <img src="./images/image 44.png" alt="Lupin Flour" class="w-24 h-24 mb-4">
+                <span class="text-sm md:text-lg font-semibold text-green text-center">Lupin Flour</span>
+            </div>
+            <!-- Ingredient 3 -->
+            <div class="ingredient flex flex-col items-center px-4 py-6 rounded-lg secondary-bg bg-pentagon">
+                <img src="./images/image 44.png" alt="Ripetizione" class="w-24 h-24 mb-4">
+                <span class="text-sm md:text-lg font-semibold text-green text-center">Ripetizione</span>
+            </div>
+            <!-- Ingredient 4 -->
+            <div class="ingredient flex flex-col items-center px-4 py-6 rounded-lg secondary-bg bg-pentagon">
+                <img src="./images/image 44.png" alt="Olive Oil" class="w-24 h-24 mb-4">
+                <span class="text-sm md:text-lg font-semibold text-green text-center">Olive Oil</span>
+            </div>
+        </div>
+        <div class="flex justify-center mt-2 lg:mt-8">
+            <marquee width="80%" direction="left" class="text-sm md:text-lg text-yellow"> ItaMeal pizza crust is made
+                only out of premium high-quality organic Italian ingredients.</marquee>
+        </div>
+    </div>
+    <!-- Secret Ingredients end -->
+
+
+
+    <!-- Slider -->
+    <div class="marquee secondary-bg p-2 lg:py-12" id="marquee">
+        <span class="flex justify-center lg:mb-2 font-semibold text-xl md:text-3xl lg:text-5xl text-center text-green">Lupini pizza, a
+            creation of a doctor and the
+            best pizza chef</span>
+        <p class="flex justify-center font-semibold text-xs md:text-lg lg:text-xl  text-center text-green">
+            Metterei qualcosa tipo “Made yet on Earth”
+        </p>
+
+
+        <ul class="marquee-content flex gap-4 lg:gap-8 mt-2 lg:mt-6">
+            <li class="flex flex-col items-center rounded-xl shadow-md p-2">
+                <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
+                    <img class="rounded-xl mb-3 w-full h-full" src="./images/banana.png" alt="" />
+                </div>
+                <p class="mb-2 text-xs md:text-base text-center">
+                    Superfood, Superpizza: Discover Lupin's Power in Every Slice.
+                </p>
+            </li>
+            <li class="flex flex-col items-center rounded-xl shadow-md p-2">
+                <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
+                    <img class="rounded-xl mb-3 w-full h-full"
+                        src="./images/png-transparent-minestrone-kale-leaf-vegetable-smoothie-kale-food-spinach-cabbage-thumbnail-removebg-preview.png"
+                        alt="" />
+                </div>
+                <p class="mb-2 text-xs md:text-base text-center">
+                    Elevate Your Slice: Superfood Lupin Pizza for Supercharged Health.
+                </p>
+            </li>
+            <li class="flex flex-col items-center rounded-xl shadow-md p-2">
+                <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
+                    <img class="rounded-xl mb-3 w-full h-full" src="./images/pizza1.jpeg" alt="" />
+                </div>
+                <p class="mb-2  text-xs md:text-base text-center">
+                    Lupin: The Superfood Pizza Revolution Begins Here.
+                </p>
+            </li>
+            <li class="flex flex-col items-center rounded-xl shadow-md p-2">
+                <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
+                    <img class="rounded-xl mb-3 w-full h-full" src="./images/pizza2.jpeg" alt="" />
+                </div>
+                <p class="mb-2  text-xs md:text-base text-center">
+                    Pizza Reborn as a Superfood: Taste the Lupin Difference."
+                </p>
+            </li>
+            <li class="flex flex-col items-center rounded-xl shadow-md p-2">
+                <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
+                    <img class="rounded-xl mb-3 w-full h-full" src="./images/pizza3.jpg" alt="" />
+                </div>
+                <p class="mb-2  text-xs md:text-base text-center">
+                    Feast on Superfoods: Lupin Pizza, Your Healthier Craving.
+                </p>
+            </li>
+            <li class="flex flex-col items-center rounded-xl shadow-md p-2">
+                <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
+                    <img class="rounded-xl mb-3 w-full h-full" src="./images/pizza2.jpeg" alt="" />
+                </div>
+                <p class="mb-2  text-xs md:text-base text-center">
+                    Unlock Superfood Magic: Lupin Pizza, Deliciously Nutritious.
+                </p>
+            </li>
+            <li class="flex flex-col items-center rounded-xl shadow-md p-2">
+                <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
+                    <img class="rounded-xl mb-3 w-full h-full" src="./images/pizza1.jpeg" alt="" />
+                </div>
+                <p class="mb-2  text-xs md:text-base text-center">
+                    Superfood in Every Slice: Experience the Lupin Pizza Phenomenon.
+                </p>
+            </li>
+            <li class="flex flex-col items-center rounded-xl shadow-md p-2">
+                <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
+                    <img class="rounded-xl mb-3 w-full h-full" src="./images/pizza-bg.png" alt="" />
+                </div>
+                <p class="mb-2  text-xs md:text-base text-center">
+                    The Superpower of Pizza: Lupin-Infused, Health-Boosted.
+                </p>
+            </li>
+            <li class="flex flex-col items-center rounded-xl shadow-md p-2">
+                <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
+                    <img class="rounded-xl mb-3 w-full h-full" src="./images/making-pizza.png" alt="" />
+                </div>
+                <p class="mb-2  text-xs md:text-base text-center">
+                    Lupin Delight: Where Pizza Meets Superfood Perfection.
+                </p>
+            </li>
+            <li class="flex flex-col items-center rounded-xl shadow-md p-2">
+                <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
+                    <img class="rounded-xl mb-3 w-full h-full" src="./images/chef.jpg" alt="" />
+                </div>
+                <p class="mb-2  text-xs md:text-base text-center">
+                    Bite into Wellness: Superfood Lupin Pizza, A Slice Above.
+                </p>
+            </li>
+        </ul>
+    </div>
+    <!-- Slider End -->
+
+
+    <footer class="primary-bg py-8">
+        <div class="container  flex justify-between ">
+            <div class="w-1/3 flex flex-col items-center ">
+                <h3 class="text-sm md:text-lg font-semibold text-white md:mb-4">About</h3>
+                <ul class="space-y-2 md:space-y-4">
+                    <li><a href="#" class="text-xs md:text-base  text-white hover:text-gray-300">Our Story</a></li>
+                    <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">Us vs. Them</a></li>
+                    <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">Blog</a></li>
+                </ul>
+            </div>
+            <div class="w-1/3 flex flex-col items-center ">
+                <h3 class="text-lg font-semibold text-white md:mb-4">Support</h3>
+                <ul class="space-y-2 md:space-y-4">
+                    <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">Contact Us</a></li>
+                    <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">FAQs</a></li>
+                    <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">Affiliates</a></li>
+                    <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">Content Creators</a></li>
+                </ul>
+            </div>
+            <div class="w-1/3 flex flex-col items-center ">
+                <h3 class="text-lg font-semibold text-white md:mb-4">Connect</h3>
+                <ul class="space-y-2 md:space-y-4">
+                    <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">Newsletter</a></li>
+                    <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">Social Media</a></li>
+                    <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">Community</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!-- <div>
+
+        ABOUT
+
+        Our Story: Dive into the journey of how our brand came to be, and the passion that drives us.
+        Us vs. Them: Discover what sets us apart from the competition, and why we're the right choice for you.
+
+        Blog: Gain insights, tips, and stories from our experts to keep you informed and entertained.
+
+
+        SUPPORT
+
+        Contact Us: Have questions or feedback? Reach out to us through our various channels.
+
+        FAQs: Find quick answers to common questions about our products, services, and policies.
+
+        Affiliates: Join our affiliate program and earn by partnering with us.
+
+        Content Creators: Collaborate with us to create engaging and exciting content.
+
+
+        CONNECT
+
+        Newsletter: Sign up for exclusive updates, deals, and insights delivered straight to your inbox.
+        Social Media: Follow us on [Instagram], [Facebook], [Twitter], [YouTube] to stay connected and updated with the
+        latest trends, behind-the-scenes, and more.
+        Community: Join our community forum to discuss, share, and get advice from fellow enthusiasts and our team.
+
+    </div> -->
+
+
+
+   
+
+
+
+    <script>
+        // 
+        const root = document.documentElement;
+        const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue(
+            "--marquee-elements-displayed"
+        );
+        const marqueeContent = document.querySelector("ul.marquee-content");
+
+        root.style.setProperty(
+            "--marquee-elements",
+            marqueeContent.children.length
+        );
+
+        for (let i = 0; i < marqueeElementsDisplayed; i++) {
+            marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+        }
+        //
+
+
+
+
+
+        // Data
+        const items = [
+            "Lupin",
+            "Soy",
+            "Chicken",
+            "Pork",
+            "Tuna",
+            "Beef",
+            "Salmon",
+            "Almonds",
+            "Oats",
+            "Eggs",
+            "Chickpea"
+        ];
+
+        const percentages = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]; // Example percentages
+
+        // Create chart
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: items,
+                datasets: [{
+                    label: 'Percentage',
+                    data: percentages,
+                    backgroundColor: "RGBA(245, 213, 142, 1)",
+                    borderColor: "RGBA(245, 213, 142, 1)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Percentage',
+                            color: 'white' // Set the color of y-axis title to white
+                        },
+                        ticks: {
+                            color: 'white' // Set the color of y-axis ticks to white
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Items',
+                            color: 'white' // Set the color of x-axis title to white
+                        },
+                        ticks: {
+                            color: 'white' // Set the color of x-axis ticks to white
+                        }
+                    }
+                },
+                aspectRatio: 3, // Maintains a square aspect ratio for the chart
+                barPercentage: 0.4, // Adjust the thickness of the bars
+                categoryPercentage: 0.8 // Adjust the height of the bars
+            }
+        });
+
+
+
+        // Sample data (replace this with your actual data)
+        //         const names = [
+        //     "Lupin",
+        //     "Soy",
+        //     "Chicken",
+        //     "Pork",
+        //     "Tuna",
+        //     "Beef",
+        //     "Salmon",
+        //     "Almonds",
+        //     "Oats",
+        //     "Eggs",
+        //     "Chickpea",
+        // ];
+        // const levels = [3, 5, 2, 7, 4, 6, 3, 8, 5, 9, 4]; 
+
+        // var ctx = document.getElementById("myChart").getContext("2d");
+        // var myChart = new Chart(ctx, {
+        //     type: "bar",
+        //     data: {
+        //         labels: names,
+        //         datasets: [{
+        //             label: "Ingredients",
+        //             data: levels,
+        //             backgroundColor: "RGBA(245, 213, 142, 1)", 
+        //             borderColor: "RGBA(245, 213, 142, 1)",
+        //             barThickness: 16, 
+        //         }],
+        //     },
+        //     options: {
+        //         indexAxis: "y",
+        //         scales: {
+        //             y: {
+        //                 ticks: {
+        //                     color: "white", 
+        //                     font: {
+        //                         size: 10, 
+        //                         weight: "bold", 
+        //                     },
+        //                 },
+        //             },
+        //             x: {
+        //                 beginAtZero: true,
+        //             },
+        //         },
+        //         plugins: {
+        //             legend: {
+        //                 labels: {
+        //                     color: "white", 
+        //                 },
+        //             },
+        //         },
+        //     },
+        // });
+
+        // function adjustChartContainerWidth() {
+        //     var chartContainer = document.getElementById("chartContainer");
+        //     var isSmallDevice = window.matchMedia("(max-width: 640px)").matches;
+        //     if (isSmallDevice) {
+        //         chartContainer.style.width = "100%";
+        //     } else {
+        //         chartContainer.style.width = "60%";
+        //     }
+        // }
+
+        // adjustChartContainerWidth();
+        // window.addEventListener("resize", adjustChartContainerWidth);
+
+
+        //
+    </script>
+</body>
+
+</html>
