@@ -11,9 +11,16 @@
 
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Protest+Revolution&family=Reggae+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Coiny&display=swap');
+
 
         body {
             font-family: "Montserrat", sans-serif;
+        }
+
+        .designedfont {
+            font-family: "Coiny", system-ui;
         }
 
         .font-family-open-sans {
@@ -21,12 +28,14 @@
         }
 
         .nav-bg {
-            background: rgba(245, 184, 51, 1);
+            background: rgba(255, 192, 0, 1);
         }
 
+
         .primary-bg {
-            background: rgba(6, 64, 39, 1);
+            background: rgba(14, 100, 82, 1);
         }
+
 
         .secondary-bg {
             background: rgba(253, 241, 222, 1);
@@ -37,7 +46,7 @@
         }
 
         .text-yellow {
-            color: rgba(245, 184, 51, 1);
+            color: rgba(255, 192, 0, 1);
         }
 
         .text-lightgreen {
@@ -113,7 +122,7 @@
 
         /*  */
         .blink {
-            animation: blinker 1.6s linear infinite;
+            animation: blinker 2.6s linear infinite;
             /* color: red; */
             /* font-size: 1.5em; */
             /* Larger, responsive font size */
@@ -144,7 +153,19 @@
         }
 
         .animate-bounce {
-            animation: bounce 1s infinite;
+            animation: bounce 1.6s infinite;
+        }
+
+        .animate-bounce2 {
+            animation: bounce 3s infinite;
+        }
+
+        .animate-bounce3 {
+            animation: bounce 2s infinite;
+        }
+
+        .animate-bounce4 {
+            animation: bounce 2.4s infinite;
         }
 
         @keyframes blink {
@@ -167,11 +188,11 @@
 
         /*  */
         .ingredient:nth-child(1) {
-            animation: zoom-in 4s infinite alternate;
+            animation: zoom-in 4s infinite alternate 0.8s;
         }
 
         .ingredient:nth-child(2) {
-            animation: zoom-in 3s infinite alternate 0.8s;
+            animation: zoom-in 3s infinite alternate 0.9s;
             /* Delay the animation by 0.5s */
         }
 
@@ -198,9 +219,9 @@
         .ingredient:hover {
             animation: none;
             /* Disable the automatic animation when hovered */
-            transform: scale(1.1);
+            /* transform: scale(1.1); */
             /* Apply zoom effect when hovered */
-            transition: transform 0.6s ease;
+            transition: transform 0.5s ease;
         }
 
         /*  */
@@ -211,9 +232,10 @@
         }
 
         /*  */
+        
         .box:hover {
             transform: scale(1.08);
-            transition: transform 0.2s ease;
+            transition: transform 0.4s ease;
         }
 
         /*  */
@@ -226,22 +248,78 @@
             transform: scale(1.1);
             /* Increase scale factor as needed */
         }
+
+        /*  */
+        .zoom-on-hover {
+            transition: transform 0.3s ease;
+        }
+
+        .zoom-on-hover:hover {
+            transform: scale(1.1);
+            /* You can adjust the scale factor as per your preference */
+        }
     </style>
 </head>
 
 <body>
-    <div class="flex items-center nav-bg px-4 md:px-8 py-2 md:py-4 justify-between">
-        <span class="text-2xl lg:text-4xl  font-extrabold text-green">LUPINI PIZZA</span>
-        <ul class="md:flex hidden font-semibold  gap-6 lg:gap-9 text-green justify-between">
-            <li>HOME</li>
-            <li>ABOUT</li>
-            <li>OUR SERVICES</li>
-            <li>CONTACT</li>
-        </ul>
-        <a href="mailto:noon@gmail.com" class="bg-white rounded-md font-semibold p-2 text-sm text-green">CONTACT</a>
+    <div class="flex items-center nav-bg px-4 md:px-8 py-2 md:py-4 justify-between ">
+        <!-- <span class="text-2xl lg:text-4xl font-extrabold text-green">LOOPINI PIZZA</span> -->
+        <div class="bg-black w-72 h-14">
+            <img class=" h-full w-full" src="./images/Loop.gif" alt="">
+        </div>
+
+
+        <div class="lg:block hidden ">
+            <ul class="font-semibold flex ">
+                <li><a href="#" class="text-green rounded-md hover:bg-gray-200 block py-2 px-4">SHOP</a></li>
+                <li><a href="#" class="text-green rounded-md hover:bg-gray-200 block py-2 px-4">SUPERFOOD</a></li>
+                <li><a href="#" class="text-green rounded-md hover:bg-gray-200 block py-2 px-4">ABOUT</a></li>
+                <li><a href="#" class="text-green rounded-md hover:bg-gray-200 block py-2 px-4">OUR SERVICES</a></li>
+                <li><a href="#" onclick="scrollToFooter()"
+                        class="text-green rounded-md hover:bg-gray-200 block py-2 px-4">CONTACT</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <a href="mailto:noon@gmail.com"
+                class="hover:bg-white hidden lg:block rounded-md font-semibold p-2 md:text-lg bg-pink-500 hover:text-black text-white">Order
+                Now</a>
+        </div>
+
+
+
+
+        <!-- Menu Icon -->
+        <button onclick="toggleMenu()" class="lg:hidden block text-green">
+            <svg class="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path fill-rule="evenodd"
+                    d="M4 6a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1zm0 6a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1zm0 6a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1z" />
+            </svg>
+        </button>
+
     </div>
+
+    <!-- Sidebar for Menu Items -->
+    <div id="menuSidebar" class="hidden fixed z-10 top-0 left-0 h-auto bg-white w-1/2">
+        <ul class="font-semibold flex flex-col justify-center bg-yellow-300 py-8 gap-4">
+            <li><a href="#" class="text-green hover:bg-gray-200 block py-2 px-4">Shop</a></li>
+            <li><a href="#" class="text-green hover:bg-gray-200 block py-2 px-4">Superfood</a></li>
+            <li><a href="#" class="text-green hover:bg-gray-200 block py-2 px-4">About</a></li>
+            <li><a href="#" class="text-green hover:bg-gray-200 block py-2 px-4">Our Services</a></li>
+            <li><a href="#" onclick="scrollToFooter()" class="text-green hover:bg-gray-200 block py-2 px-4">Contact</a>
+            </li>
+            <!-- <li><a href="#" onclick="scrollToFooter()"
+                        class="text-green hover:bg-gray-200  py-2 px-4">CONTACT</a></li> -->
+            <li class="flex justify-center">
+                <a href="mailto:noon@gmail.com"
+                    class="hover:bg-white  rounded-md font-semibold p-2 md:text-lg bg-pink-600 text-white hover:text-black">Order
+                    Now</a>
+            </li>
+        </ul>
+    </div>
+
     <!-- Ita Meal -->
-    <div class="primary-bg mt-1 h-auto">
+    <!-- <div class="primary-bg mt-1 h-auto">
         <div class="flex justify-between">
             <div class="p-2  lg:p-10">
                 <div class="flex items-start justify-between">
@@ -254,10 +332,6 @@
                     </div>
                     <img class="rounded-full flex lg:hidden h-20 md:h-32" src="./images/chef.jpg" alt="">
                 </div>
-
-                <!-- <p class="blink  text-white font-bold text-3xl md:text-6xl md:mt-3">
-                    Mangia Better !!
-                </p> -->
 
                 <p class="text-sm  md:text-xl lg:text-4xl text-yellow mt-2  lg:mt-6">
                     Lupini Peas Are the most Powerful Superfood You’ve ever Heard of...
@@ -291,8 +365,41 @@
         <div class="flex justify-center items-center  p-3">
             <marquee class="text-sm md:text-xl  text-yellow"
                 style="width: 100%; @media (min-width: 768px) { width: 60%; }">
-                Lupini Peas Are the most Powerful Superfood You’ve ever Heard of...
+                Lupini Peas Are the most Powerful Superfo od You’ve ever Heard of...
             </marquee>
+        </div>
+    </div> -->
+
+
+
+
+
+    <div class="primary-bg mt-1 h-auto">
+        <div class="flex justify-between items-center">
+            <div style="width: 50%;" class="  p-2 lg:p-4  ">
+
+                <p class="w-full designedfont text-white text-center text-2xl md:text-5xl lg:text-8xl">
+                    With Great <span class="text-yellow ">Superfood </span> Comes Great <span
+                        class="text-yellow blink">Superpizza</span>
+                </p>
+                <div class="flex justify-center">
+
+                    <button href="mailto:noon@gmail.com" style="width: 60%;"
+                        class="text-white font-semibold md:font-extrabold text-sm md:text-2xl lg:text-4xl p-1 md:p-2 lg:p-4 px-2 md:px-5 rounded-full bg-pink-600 hover:bg-white hover:text-black  mt-2 md:mt-5 lg:mt-10">
+                        Order Now
+                    </button>
+                </div>
+            </div>
+            <div style="width: 44%;" class="p-4">
+                <img class="rounded-full h-auto zoom-on-hover" src="./images/Chef 02.gif" alt="" />
+            </div>
+
+        </div>
+        <div class="flex justify-center items-center p-1 lg:p-3">
+            <p class="text-white text-sm text-center md:text-2xl lg:text-4xl font-semibold">
+                <span class="text-yellow">One</span> pizza, <span class="text-yellow">Multiple</span> benefits, <span
+                    class="text-yellow">Italian</span> made
+            </p>
 
         </div>
     </div>
@@ -311,12 +418,36 @@
             <span class="hidden md:flex font-semibold text-green text-xl md:text-3xl lg:text-5xl">
                 Introducing pizza that brings superfood
             </span>
-            <p class="text-sm md:text-lg lg:text-xl font-medium  text-green ">
+            <!-- <p class="text-sm md:text-lg lg:text-xl font-medium  text-green ">
+                Lupiz is the first superfood pizza, the best taste, ingredients and
+                macros made yet !
+            </p> -->
+            <!-- <h2 class="text-yellow text-2xl md:text-3xl  lg:text-5xl fontsemi-bold secondary">ItaMeal</h2> -->
+            <p class="blink  text-pink-600 font-bold text-3xl md:text-5xl lg:text-6xl md:mt-3">
+                Mangia Better !!
+            </p>
+
+            <p class="text-sm md:text-lg lg:text-xl font-medium  text-green mt-2">
                 Lupiz is the first superfood pizza, the best taste, ingredients and
                 macros made yet !
             </p>
+            <p class="text-green text-xs md:text-base mt-1 md:mt-3 lg:mt-4 ">
+                Che ne dici se mettiamo per farla suonare meglio.
+            </p>
+            <p class="text-green text-xs md:text-base ">
+                Our secret is a food that no one knows about..
+            </p>
 
-            <ul class="mx-6 m-2 ">
+            <p class="text-pink-600 text-xs md:text-base mt-1 md:mt-3 lg:mt-4">
+                <span class="text-green text-sm md:text-lg font-semibold">LUPIN : </span> Better
+                taste with tons of protein and lsess carbs? Almost impossible to
+                believe!
+            </p>
+            <p class="text-green text-xs md:text-base mb-2">
+                Lupini beans are the beyond powerful superfood you have been waiting
+                for...
+            </p>
+            <!-- <ul class="mx-6 m-2 ">
                 <p class="text-xs md:text-base  text-green">
                     <span>&#9733;</span> More Flavor, more nutrients
                 </p>
@@ -334,25 +465,25 @@
                     <span>&#9733;</span> Slice into the Good Life: Lupini Pizza
                 </p>
 
-            </ul>
+            </ul> -->
 
-            <div class="flex justify-center items-center p-1 md:px-3">
+            <!-- <div class="flex justify-center items-center p-1 md:px-3">
                 <marquee width="100%" direction="right" class="text-sm md:text-lg  md:font-semibold text-green">
                     Lupini Peas Are the most Powerful Superfood You’ve ever Heard of...</marquee>
-            </div>
+            </div> -->
 
-            <div class="flex justify-between md:px-2">
+            <div class="flex justify-between">
                 <div style="width: 48%;" class=" relative">
                     <img class="w-full" src="./images/pizza-bg.png" alt="" />
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <p style="width: 80%;" class="text-white text-xs lg:text-2xl lg:font-semibold text-center">Lupin
+                        <p style="width: 80%;" class="text-white designedfont text-xs lg:text-4xl text-center">Lupin
                             Pizza: Crispy, Healthy, Unbelievably Good.</p>
                     </div>
                 </div>
                 <div style="width: 48%;" class=" relative">
                     <img class="w-full" src="./images/pizza-bg.png" alt="" />
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <p style="width: 80%;" class="text-white text-xs lg:text-2xl lg:font-semibold text-center">Lupin
+                        <p style="width: 80%;" class="designedfont text-white text-xs lg:text-4xl text-center">Lupin
                             Pizza: a Creation of a Doctor and the best Pizza</p>
                     </div>
                 </div>
@@ -377,7 +508,45 @@
 
 
 
+
+
+
+
+    <!-- secret -->
+
+    <div class="flex flex-col md:flex-row justify-between secondary-bg p-2  lg:py-12 h-auto">
+        <div class="">
+            <span class="font-semibold md:hidden text-green text-xl ">Lupin is our secret!</span>
+            <img class="h-full mt-1" src="./images/making-pizza.png" alt="" />
+        </div>
+        <div class="pl-2 lg:pl-4 pt-2  flex flex-col justify-between lg:pt-8 ">
+            <span class="hidden md:flex font-semibold text-green text-xl md:text-3xl lg:text-5xl">Loopini is our
+                secret!</span>
+            <p class="text-sm md:text-lg lg:text-xl font-medium  text-green mt-2">
+                ItaMeal pizza crust is made only out of premium high quality organic italian ingredients.
+            </p>
+            <p class="text-pink-600 text-xs md:text-base mt-1 md:mt-3 lg:mt-4">
+                No One Knows That Behind the Success of the Roman Empire Lies a Secret
+                Recipe: They Nourished Their Soldiers with Lupin
+            </p>
+            <p class="text-green text-xs md:text-base mt-1 md:mt-3 lg:mt-6">
+                Itameal pizza is a product made by Italians including famous and
+                awarded italian pizza chef, Pasquale Cozzolino, with only organic
+                italian ingredients. 
+            </p>
+            <p class="text-pink-600 text-xs md:text-base mt-1 md:mt-3 lg:mt-6">
+
+                we combined our italian tradition with the knowledge and craftsmanship on one of the best pizza chefs in
+                the world, Pasquale Cozzolino.
+
+                 
+            </p>
+            <img class="mt-2 md:mt-5 lg:mt-9" src="./images/3x.jpeg" alt="" />
+        </div>
+    </div>
+    <!--secret End  -->
     <!--  -->
+    <hr class="md:h-1 primary-bg" />
     <div
         class="flex flex-col lg:flex-row items-center justify-center md:justify-between secondary-bg  py-2 md:p-2 lg:p-8 md:gap-4  lg:gap-8 lg:px-12 ">
         <div class="flex flex-row md:flex-row p-2 md:p-0 items-center gap-2 md:gap-4">
@@ -389,7 +558,7 @@
             <span class="font-medium  md:font-semibold text-sm md:text-lg text-center">Italian Ingredients</span>
         </div>
         <div class="flex flex-row md:flex-row p-2 md:p-0 items-center gap-2 md:gap-4">
-            <img src="./images/image 44.png" alt="" class="lg:w-16 lg:h-16 w-8 h-8 rounded-full shadow-md" />
+            <img src="./images/image 43.png" alt="" class="lg:w-16 lg:h-16 w-8 h-8 rounded-full shadow-md" />
             <span class="font-medium md:font-semibold text-sm md:text-lg text-center">Award Winning Chef's made (also
                 Italian)</span>
         </div>
@@ -397,65 +566,25 @@
     </div>
 
     <!--  -->
-
-
-
-    <!-- secret -->
-    <hr class="md:h-1 primary-bg" />
-    <div class="flex flex-col md:flex-row justify-between secondary-bg p-2  lg:py-12 h-auto">
-        <div class="">
-            <span class="font-semibold md:hidden text-green text-xl ">Lupin is our secret!</span>
-            <img class="h-full mt-1" src="./images/making-pizza.png" alt="" />
-        </div>
-        <div class="pl-2 pt-2  flex flex-col justify-between lg:p-8 pb-0">
-            <span class="hidden md:flex font-semibold text-green text-xl md:text-3xl lg:text-5xl">Lupin is our
-                secret!</span>
-            <p class="text-green text-xs md:text-base mt-1 md:mt-3 lg:mt-4">
-                No One Knows That Behind the Success of the Roman Empire Lies a Secret
-                Recipe: They Nourished Their Soldiers with Lupin
-            </p>
-            <p class="text-green text-xs md:text-base mt-1 md:mt-3 lg:mt-6">
-                Itameal pizza is a product made by Italians including famous and
-                awarded italian pizza chef, Pasquale Cozzolino, with only organic
-                italian ingredients. 
-            </p>
-            <p class="text-green text-xs md:text-base mt-1 md:mt-3 lg:mt-6">
-                Itameal pizza is a product made by Italians including famous and
-                awarded italian pizza chef, Pasquale Cozzolino, with only organic
-                italian ingredients. 
-            </p>
-            <img class="mt-2 md:mt-5 lg:mt-9" src="./images/3x.jpeg" alt="" />
-        </div>
-    </div>
-    <!--secret End  -->
     <!-- Chart -->
     <div class="primary-bg p-2 lg:p-12">
-
         <p class="text-yellow text-center text-xl md:text-3xl lg:text-5xl flex justify-center font-semibold">
-            LUPIN :
-            the Nutritional Game-Changer
+            LUPIN : the Nutritional Game-Changer
         </p>
         <span class="text-white flex text-xs md:text-lg lg:text-xl justify-center text-center">
             Lupin beans are the most sustainable and higher source of protein found in nature</span>
 
-
-
         <span class="md:mt-3 mt-1 flex text-sm md:text-2xl font-semibold text-yellow justify-center">Protein &
             Fiber</span>
 
-        <!-- <div class="items-center md:gap-4 md:mt-4 h-auto w-full flex md:flex-row flex-col justify-between ">
-            <div id="chartContainer" class="h-96 bg-red-500 ">
-                <canvas id="myChart" class=""></canvas>
+        <div class="items-center md:gap-4 md:mt-4 h-auto w-full flex md:flex-row flex-col justify-between">
+            <div class="w-full">
+                <canvas id="myChart" class="w-full"></canvas>
             </div>
             <div class="border hidden bg-blue-500 lg:flex">
                 <img src="./images/pizza2.jpeg" alt="" class="h-96 w-96" />
             </div>
-        </div> -->
-        <div>
-            <canvas id="myChart" class="w-36 h-36 "></canvas>
         </div>
-
-
     </div>
     <!-- Chart End -->
     <!-- Table -->
@@ -586,7 +715,7 @@
             Superpowers</h2>
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Box 1 -->
-            <div class="box p-2 lg:p-6 rounded-lg shadow-lg secondary-bg">
+            <div class="benefit-box p-2 lg:p-6 rounded-lg shadow-lg secondary-bg">
                 <span class="font-extrabold md:text-4xl text-lightgreen">3x</span>
                 <img src="./images/egg.png" alt="Protein of Eggs" class="w-20 h-20 lg:w-32 lg:h-32 mx-auto ">
                 <h3 class="text-sm md:text-lg font-semibold text-center mb-2 text-green">Protein of Eggs</h3>
@@ -595,18 +724,18 @@
                     Nulla facilisi. Sed id libero libero. Integer semper velit a nulla fermentum, sed aliquet libero
                     pretium.</p>
             </div>
-            <div class="box p-2 lg:p-6 rounded-lg shadow-lg secondary-bg">
+            <div class="benefit-box p-2 lg:p-6 rounded-lg shadow-lg secondary-bg">
                 <span class="font-extrabold md:text-4xl text-lightgreen">3x</span>
-                <img src="./images/egg.png" alt="Fiber of Oats" class="w-20 h-20 lg:w-32 lg:h-32 mx-auto ">
+                <img src="./images/oats.png" alt="Fiber of Oats" class="w-20 h-20 lg:w-32 lg:h-32 mx-auto ">
                 <h3 class="text-sm md:text-lg font-semibold text-center mb-2 text-green">Fiber of Oats</h3>
                 <p class="text-xs md:text-base text-center text-green">Lorem ipsum dolor sit amet, consectetur
                     adipiscing elit.
                     Nulla facilisi. Sed id libero libero. Integer semper velit a nulla fermentum, sed aliquet libero
                     pretium.</p>
             </div>
-            <div class="box p-2 lg:p-6 rounded-lg shadow-lg secondary-bg">
+            <div class="benefit-box p-2 lg:p-6 rounded-lg shadow-lg secondary-bg">
                 <span class="font-extrabold md:text-4xl text-lightgreen">3x</span>
-                <img src="./images/egg.png" alt="Potassium of Banana" class="w-20 h-20 lg:w-32 lg:h-32 mx-auto ">
+                <img src="./images/banana.png" alt="Potassium of Banana" class="w-20 h-20 lg:w-32 lg:h-32 mx-auto ">
                 <h3 class="text-sm md:text-lg font-semibold text-center mb-2 text-green">Potassium of Banana</h3>
                 <p class="text-xs md:text-base text-center text-green">Lorem ipsum dolor sit amet, consectetur
                     adipiscing elit.
@@ -733,52 +862,59 @@
             <!-- Box 1 -->
             <div class="  benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
 
-                <img src="./images/image 42.png" alt="Icon 1" class="h-12 w-12 lg:w-16 lg:h-16 mb-2  animate-bounce">
+                <img src="./images/blood-removebg-preview.png" alt="Icon 1"
+                    class="h-12 w-12 lg:w-16 lg:h-16 mb-2  animate-bounce2">
                 <h3 class="text-sm md:text-lg font-semibold text-center">Blood Sugar Control</h3>
             </div>
             <!-- Box 2 -->
             <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
-                <img src="./images/image 42.png" alt="Icon 2" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <img src="./images/diabetes-friendly-grunge-rubber-stamp-vector-34980594.jpg" alt="Icon 2"
+                    class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
                 <h3 class="text-sm md:text-lg font-semibold text-center">Diabetic Friendly</h3>
             </div>
             <!-- Box 3 -->
             <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
-                <img src="./images/image 42.png" alt="Icon 3" class="h-12 w-12 lg:w-16 lg:h-16 mb-2 animate-bounce">
+                <img src="./images/lowsodium.png" alt="Icon 3" class="h-12 w-12 lg:w-16 lg:h-16 mb-2 animate-bounce3">
                 <h3 class="text-sm md:text-lg font-semibold text-center">Low sodium</h3>
             </div>
             <!-- Box 4 -->
             <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
-                <img src="./images/image 42.png" alt="Icon 4" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <img src="./images/healthygut.png" alt="Icon 4" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce4">
                 <h3 class="text-sm md:text-lg font-semibold text-center">Healthy gut</h3>
             </div>
             <!-- Box 5 -->
             <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
-                <img src="./images/image 42.png" alt="Icon 5" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <img src="./images/lowcalorie.png" alt="Icon 5" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce2">
                 <h3 class="text-sm md:text-lg font-semibold text-center">Low calories</h3>
             </div>
             <!-- Box 6 -->
             <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
-                <img src="./images/image 42.png" alt="Icon 6" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <img src="./images/environmentally-friendly-removebg-preview.png" alt="Icon 6"
+                    class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
                 <h3 class="text-sm md:text-lg font-semibold text-center">Environmentally Sustainable</h3>
             </div>
             <!-- Box 7 -->
             <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
-                <img src="./images/image 42.png" alt="Icon 7" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <img src="./images/vitamins-and-minerals-removebg-preview.png" alt="Icon 7"
+                    class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce3">
                 <h3 class="text-sm md:text-lg font-semibold text-center">Rich in Vitamins and Minerals</h3>
             </div>
             <!-- Box 8 -->
             <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
-                <img src="./images/image 42.png" alt="Icon 8" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <img src="./images/protein-removebg-preview (1).png" alt="Icon 8"
+                    class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce2">
                 <h3 class="text-sm md:text-lg font-semibold text-center">High Protein Low carbs</h3>
             </div>
             <!-- Box 9 -->
             <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
-                <img src="./images/image 42.png" alt="Icon 9" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <img src="./images/Prebiotics-Converted-removebg-preview.png" alt="Icon 9"
+                    class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce4">
                 <h3 class="text-sm md:text-lg font-semibold text-center">Contains Prebiotics</h3>
             </div>
             <!-- Box 10 -->
             <div class="benefit-box flex flex-col items-center justify-center p-4 rounded-full shadow-lg bg-white">
-                <img src="./images/image 42.png" alt="Icon 10" class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
+                <img src="./images/environmentally-friendly-removebg-preview.png" alt="Icon 10"
+                    class="h-12 w-12 lg:w-16 lg:h-16  mb-2 animate-bounce">
                 <h3 class="text-sm md:text-lg font-semibold text-center">Environmentally Sustainable</h3>
             </div>
         </div>
@@ -830,31 +966,47 @@
     </div> -->
 
 
-
     <div class="primary-bg p-2  lg:py-10">
         <h2 class="text-xl md:text-3xl lg:text-5xl text-yellow font-semibold justify-center flex mb-4">Secret
             Ingredients</h2>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Ingredient 1 -->
-            <div class="ingredient flex flex-col items-center px-4 py-6 rounded-lg secondary-bg bg-pentagon">
-                <img src="./images/image 44.png" alt="Cultured Yeast" class="w-24 h-24 mb-4">
+            <!-- <div class="ingredient flex flex-col items-center px-4 py-6 rounded-lg secondary-bg bg-pentagon">
+                <img src="./images/yeast.jpg" alt="Cultured Yeast" class="w-24 h-24 mb-4">
                 <span class="text-sm md:text-lg font-semibold text-green text-center">Cultured Yeast</span>
+            </div> -->
+            <div class="ingredient flex flex-col items-center h-40 rounded-lg bg-pentagon"
+                style="background-image: url('./images/yeast.jpg'); background-size: cover; background-position: center;">
+
+                <span
+                    class="text-sm md:text-xl font-semibold text-green text-center mt-auto rounded-sm px-2 mb-1 bg-white">Cultured
+                    Yeast</span>
+
             </div>
+
             <!-- Ingredient 2 -->
-            <div class="ingredient flex flex-col items-center px-4 py-6 rounded-lg secondary-bg bg-pentagon">
-                <img src="./images/image 44.png" alt="Lupin Flour" class="w-24 h-24 mb-4">
-                <span class="text-sm md:text-lg font-semibold text-green text-center">Lupin Flour</span>
+            <div class="ingredient flex flex-col items-center h-40 rounded-lg  bg-pentagon"
+                style="background-image: url('./images/flour_.jpg'); background-size: cover; background-position: center;">
+                <span
+                    class="text-sm md:text-xl font-semibold text-green text-center mt-auto rounded-sm px-2 mb-1 bg-white">Lupin
+                    Flour</span>
             </div>
             <!-- Ingredient 3 -->
-            <div class="ingredient flex flex-col items-center px-4 py-6 rounded-lg secondary-bg bg-pentagon">
-                <img src="./images/image 44.png" alt="Ripetizione" class="w-24 h-24 mb-4">
-                <span class="text-sm md:text-lg font-semibold text-green text-center">Ripetizione</span>
+
+            <div class="ingredient flex flex-col items-center h-40 rounded-lg  bg-pentagon"
+                style="background-image: url('./images/flour_.jpg'); background-size: cover; background-position: center;">
+                <span
+                    class="text-sm md:text-xl font-semibold text-green text-center mt-auto rounded-sm px-2 mb-1 bg-white">Ripetizione</span>
             </div>
             <!-- Ingredient 4 -->
-            <div class="ingredient flex flex-col items-center px-4 py-6 rounded-lg secondary-bg bg-pentagon">
-                <img src="./images/image 44.png" alt="Olive Oil" class="w-24 h-24 mb-4">
-                <span class="text-sm md:text-lg font-semibold text-green text-center">Olive Oil</span>
+            <div class="ingredient flex flex-col items-center h-40 rounded-lg  bg-pentagon"
+                style="background-image: url('./images/olive.jpg'); background-size: cover; background-position: center;">
+                <span
+                    class="text-sm md:text-xl font-semibold text-green text-center mt-auto rounded-sm px-2 mb-1 bg-white">Olive
+                    Oil</span>
             </div>
+
+
         </div>
         <div class="flex justify-center mt-2 lg:mt-8">
             <marquee width="80%" direction="left" class="text-sm md:text-lg text-yellow"> ItaMeal pizza crust is made
@@ -867,7 +1019,9 @@
 
     <!-- Slider -->
     <div class="marquee secondary-bg p-2 lg:py-12" id="marquee">
-        <span class="flex justify-center lg:mb-2 font-semibold text-xl md:text-3xl lg:text-5xl text-center text-green">Lupini pizza, a
+        <span
+            class="flex justify-center lg:mb-2 font-semibold text-xl md:text-3xl lg:text-5xl text-center text-green">Lupini
+            pizza, a
             creation of a doctor and the
             best pizza chef</span>
         <p class="flex justify-center font-semibold text-xs md:text-lg lg:text-xl  text-center text-green">
@@ -878,7 +1032,8 @@
         <ul class="marquee-content flex gap-4 lg:gap-8 mt-2 lg:mt-6">
             <li class="flex flex-col items-center rounded-xl shadow-md p-2">
                 <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
-                    <img class="rounded-xl mb-3 w-full h-full" src="./images/banana.png" alt="" />
+                    <img class="rounded-xl mb-3 w-full h-full transition transform origin-top-left hover:-rotate-12"
+                        src="./images/banana.png" alt="" />
                 </div>
                 <p class="mb-2 text-xs md:text-base text-center">
                     Superfood, Superpizza: Discover Lupin's Power in Every Slice.
@@ -886,7 +1041,7 @@
             </li>
             <li class="flex flex-col items-center rounded-xl shadow-md p-2">
                 <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
-                    <img class="rounded-xl mb-3 w-full h-full"
+                    <img class="rounded-xl mb-3 w-full h-full transition transform origin-top-left hover:-rotate-12"
                         src="./images/png-transparent-minestrone-kale-leaf-vegetable-smoothie-kale-food-spinach-cabbage-thumbnail-removebg-preview.png"
                         alt="" />
                 </div>
@@ -896,7 +1051,8 @@
             </li>
             <li class="flex flex-col items-center rounded-xl shadow-md p-2">
                 <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
-                    <img class="rounded-xl mb-3 w-full h-full" src="./images/pizza1.jpeg" alt="" />
+                    <img class="rounded-xl mb-3 w-full h-full transition transform origin-top-left hover:-rotate-12"
+                        src="./images/pizza1.jpeg" alt="" />
                 </div>
                 <p class="mb-2  text-xs md:text-base text-center">
                     Lupin: The Superfood Pizza Revolution Begins Here.
@@ -904,7 +1060,8 @@
             </li>
             <li class="flex flex-col items-center rounded-xl shadow-md p-2">
                 <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
-                    <img class="rounded-xl mb-3 w-full h-full" src="./images/pizza2.jpeg" alt="" />
+                    <img class="rounded-xl mb-3 w-full h-full transition transform origin-top-left hover:-rotate-12"
+                        src="./images/pizza2.jpeg" alt="" />
                 </div>
                 <p class="mb-2  text-xs md:text-base text-center">
                     Pizza Reborn as a Superfood: Taste the Lupin Difference."
@@ -912,7 +1069,8 @@
             </li>
             <li class="flex flex-col items-center rounded-xl shadow-md p-2">
                 <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
-                    <img class="rounded-xl mb-3 w-full h-full" src="./images/pizza3.jpg" alt="" />
+                    <img class="rounded-xl mb-3 w-full h-full transition transform origin-top-left hover:-rotate-12"
+                        src="./images/pizza3.jpg" alt="" />
                 </div>
                 <p class="mb-2  text-xs md:text-base text-center">
                     Feast on Superfoods: Lupin Pizza, Your Healthier Craving.
@@ -920,7 +1078,8 @@
             </li>
             <li class="flex flex-col items-center rounded-xl shadow-md p-2">
                 <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
-                    <img class="rounded-xl mb-3 w-full h-full" src="./images/pizza2.jpeg" alt="" />
+                    <img class="rounded-xl mb-3 w-full h-full transition transform origin-top-left hover:-rotate-12"
+                        src="./images/pizza2.jpeg" alt="" />
                 </div>
                 <p class="mb-2  text-xs md:text-base text-center">
                     Unlock Superfood Magic: Lupin Pizza, Deliciously Nutritious.
@@ -928,7 +1087,8 @@
             </li>
             <li class="flex flex-col items-center rounded-xl shadow-md p-2">
                 <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
-                    <img class="rounded-xl mb-3 w-full h-full" src="./images/pizza1.jpeg" alt="" />
+                    <img class="rounded-xl mb-3 w-full h-full transition transform origin-top-left hover:-rotate-12"
+                        src="./images/pizza1.jpeg" alt="" />
                 </div>
                 <p class="mb-2  text-xs md:text-base text-center">
                     Superfood in Every Slice: Experience the Lupin Pizza Phenomenon.
@@ -936,7 +1096,8 @@
             </li>
             <li class="flex flex-col items-center rounded-xl shadow-md p-2">
                 <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
-                    <img class="rounded-xl mb-3 w-full h-full" src="./images/pizza-bg.png" alt="" />
+                    <img class="rounded-xl mb-3 w-full h-full transition transform origin-top-left hover:-rotate-12"
+                        src="./images/pizza-bg.png" alt="" />
                 </div>
                 <p class="mb-2  text-xs md:text-base text-center">
                     The Superpower of Pizza: Lupin-Infused, Health-Boosted.
@@ -944,7 +1105,8 @@
             </li>
             <li class="flex flex-col items-center rounded-xl shadow-md p-2">
                 <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
-                    <img class="rounded-xl mb-3 w-full h-full" src="./images/making-pizza.png" alt="" />
+                    <img class="rounded-xl mb-3 w-full h-full transition transform origin-top-left hover:-rotate-12"
+                        src="./images/making-pizza.png" alt="" />
                 </div>
                 <p class="mb-2  text-xs md:text-base text-center">
                     Lupin Delight: Where Pizza Meets Superfood Perfection.
@@ -952,7 +1114,8 @@
             </li>
             <li class="flex flex-col items-center rounded-xl shadow-md p-2">
                 <div class="h-32 w-32 md:h-44 md:w-44 lg:h-60 lg:w-64 p-2">
-                    <img class="rounded-xl mb-3 w-full h-full" src="./images/chef.jpg" alt="" />
+                    <img class="rounded-xl mb-3 w-full h-full transition transform origin-top-left hover:-rotate-12"
+                        src="./images/chef.jpg" alt="" />
                 </div>
                 <p class="mb-2  text-xs md:text-base text-center">
                     Bite into Wellness: Superfood Lupin Pizza, A Slice Above.
@@ -963,7 +1126,7 @@
     <!-- Slider End -->
 
 
-    <footer class="primary-bg py-8">
+    <footer id="footer" class="primary-bg py-8">
         <div class="container  flex justify-between ">
             <div class="w-1/3 flex flex-col items-center ">
                 <h3 class="text-sm md:text-lg font-semibold text-white md:mb-4">About</h3>
@@ -979,7 +1142,8 @@
                     <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">Contact Us</a></li>
                     <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">FAQs</a></li>
                     <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">Affiliates</a></li>
-                    <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">Content Creators</a></li>
+                    <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">Content Creators</a>
+                    </li>
                 </ul>
             </div>
             <div class="w-1/3 flex flex-col items-center ">
@@ -990,6 +1154,9 @@
                     <li><a href="#" class="text-xs md:text-base text-white hover:text-gray-300">Community</a></li>
                 </ul>
             </div>
+        </div>
+        <div class="flex justify-center text-center mt-8 text-sm text-gray-300">
+            <span>Website Design & Developed by DV EXCELLUS || kHETI</span>
         </div>
     </footer>
 
@@ -1028,11 +1195,35 @@
 
 
 
-   
+
+
 
 
 
     <script>
+        // 
+        function toggleMenu() {
+            var menuSidebar = document.getElementById('menuSidebar');
+            menuSidebar.classList.toggle('hidden');
+        }
+
+        function scrollToFooter() {
+            var footer = document.getElementById('footer');
+            footer.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // 
+        function scrollToFooter() {
+            const footer = document.getElementById('footer');
+            footer.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+
+
         // 
         const root = document.documentElement;
         const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue(
@@ -1082,7 +1273,7 @@
                     data: percentages,
                     backgroundColor: "RGBA(245, 213, 142, 1)",
                     borderColor: "RGBA(245, 213, 142, 1)",
-                    borderWidth: 1
+                    borderWidth: 0
                 }]
             },
             options: {
